@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Codex System Interface</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow-y: auto;
+  }
+
+  /* animated background glow field */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(0,170,255,0.15), transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(0,255,255,0.08), transparent 45%);
+    animation: drift 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+
+  @keyframes drift {
+    from { transform: translateY(-10px); }
+    to { transform: translateY(10px); }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 950px;
+    margin: auto;
+    padding: 24px;
+  }
+
+  .header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #00aaff;
+    text-shadow: 0 0 14px #00aaff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* glowing system panels */
+  .block {
+    background: rgba(0,170,255,0.05);
+    border: 1px solid rgba(0,170,255,0.35);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 0 18px rgba(0,170,255,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle energy sweep (no interaction needed) */
+  .block::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,170,255,0.12), transparent);
+    animation: sweep 5s linear infinite;
+  }
+
+  @keyframes sweep {
+    0% { left: -60%; }
+    100% { left: 160%; }
+  }
+
+  .title {
+    color: #00aaff;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px #00aaff;
+  }
+
+  .rank {
+    color: #ffd700;
+    font-weight: bold;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #00aaff;
+    font-weight: bold;
+    text-shadow: 0 0 12px #00aaff;
+  }
+
+  /* constant subtle pulse (no hover needed) */
+  .pulse {
+    animation: pulse 3s infinite alternate;
+  }
+
+  @keyframes pulse {
+    from { opacity: 0.85; }
+    to { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="header pulse">
+    ⚜️ CODEX INTERNAL SYSTEM DESCRIPTION ⚜️
+  </div>
+
+  <div class="block">
+    The Codex is a structured chess system built around progression, activity, and contribution.<br><br>
+    Members operate inside a system where engagement determines status and authority.
+  </div>
+
+  <div class="block">
+    <div class="title">🧭 SYSTEM FUNCTION</div>
+    Activity → progression<br>
+    Performance → recognition<br>
+    Contribution → authority<br><br>
+    Consistency is valued over isolated performance.
+  </div>
+
+  <div class="block">
+    <div class="title">🧩 ENTRY STATUS</div>
+    All members begin as Initiates.<br><br>
+    • Play games<br>
+    • Engage in chat<br>
+    • Participate in events
+  </div>
+
+  <div class="block">
+    <div class="title">🏛️ PROGRESSION STRUCTURE</div>
+    <span class="rank">Initiate</span><br>
+    <span class="rank">Keeper of Moves</span><br>
+    <span class="rank">Guardian of Lines</span><br>
+    <span class="rank">Warden</span><br>
+    <span class="rank">Grand Protector</span>
+  </div>
+
+  <div class="block">
+    <div class="title">⚙️ OPERATIONAL BEHAVIOUR</div>
+    Active → visibility increases<br>
+    Consistent → responsibility increases<br>
+    Inactive → reduced system presence
+  </div>
+
+  <div class="block">
+    <div class="title">🏆 INFERNO CHAMPIONSHIP</div>
+    Monthly elite competition.<br><br>
+    Winners are featured in the club sidebar for 1 month and gain permanent recognition in events and competitions.
+  </div>
+
+  <div class="block">
+    <div class="title">🧩 COMMUNITY SYSTEM</div>
+    • Fun forums<br>
+    • Strategy discussions<br>
+    • Member interaction zones<br>
+    • Community challenges
+  </div>
+
+  <div class="block">
+    <div class="title">📜 CODEX CONDUCT</div>
+    • Stay active<br>
+    • Respect structure<br>
+    • Avoid spam<br>
+    • Contribute meaningfully
+  </div>
+
+  <div class="footer pulse">
+    SYSTEM ACTIVE • PROGRESSION CONTINUOUS • CODEX ONLINE
+  </div>
+
+</div>
+
+</body>
+</html>
