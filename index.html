@@ -14,7 +14,17 @@
     overflow-y: auto;
   }
 
-  /* animated background glow field */
+  /* ===== PARTICLE CANVAS ===== */
+  #particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* ===== BACKGROUND ENERGY FIELD ===== */
   body::before {
     content: "";
     position: fixed;
@@ -22,10 +32,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 20%, rgba(0,170,255,0.15), transparent 40%),
-                radial-gradient(circle at 70% 80%, rgba(0,255,255,0.08), transparent 45%);
+    background:
+      radial-gradient(circle at 30% 20%, rgba(0,170,255,0.12), transparent 40%),
+      radial-gradient(circle at 70% 80%, rgba(0,255,255,0.06), transparent 45%);
     animation: drift 8s ease-in-out infinite alternate;
-    z-index: 0;
+    z-index: 1;
+    pointer-events: none;
   }
 
   @keyframes drift {
@@ -51,7 +63,6 @@
     letter-spacing: 1px;
   }
 
-  /* glowing system panels */
   .block {
     background: rgba(0,170,255,0.05);
     border: 1px solid rgba(0,170,255,0.35);
@@ -63,7 +74,7 @@
     overflow: hidden;
   }
 
-  /* subtle energy sweep (no interaction needed) */
+  /* energy sweep */
   .block::after {
     content: "";
     position: absolute;
@@ -100,7 +111,6 @@
     text-shadow: 0 0 12px #00aaff;
   }
 
-  /* constant subtle pulse (no hover needed) */
   .pulse {
     animation: pulse 3s infinite alternate;
   }
@@ -113,6 +123,8 @@
 </head>
 
 <body>
+
+<canvas id="particles"></canvas>
 
 <div class="wrap">
 
@@ -151,32 +163,16 @@
   </div>
 
   <div class="block">
-    <div class="title">⚙️ OPERATIONAL BEHAVIOUR</div>
-    Active → visibility increases<br>
-    Consistent → responsibility increases<br>
-    Inactive → reduced system presence
-  </div>
-
-  <div class="block">
     <div class="title">🏆 INFERNO CHAMPIONSHIP</div>
     Monthly elite competition.<br><br>
-    Winners are featured in the club sidebar for 1 month and gain permanent recognition in events and competitions.
+    Winners featured in sidebar for 1 month + permanent recognition.
   </div>
 
   <div class="block">
     <div class="title">🧩 COMMUNITY SYSTEM</div>
     • Fun forums<br>
     • Strategy discussions<br>
-    • Member interaction zones<br>
     • Community challenges
-  </div>
-
-  <div class="block">
-    <div class="title">📜 CODEX CONDUCT</div>
-    • Stay active<br>
-    • Respect structure<br>
-    • Avoid spam<br>
-    • Contribute meaningfully
   </div>
 
   <div class="footer pulse">
@@ -184,6 +180,52 @@
   </div>
 
 </div>
+
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let particles = [];
+
+for (let i = 0; i < 70; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "rgba(0,170,255,0.8)";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
 
 </body>
 </html>
